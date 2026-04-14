@@ -1,0 +1,15 @@
+{
+  "TC008": {
+    "productDetail": {
+      "name": "Blue Top",
+      "category": "Women > Tops",
+      "price": "500",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Polo"
+    }
+  },
+  "TC009": {
+    "textSearch": "Blue"
+  }
+}

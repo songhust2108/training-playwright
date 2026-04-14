@@ -1,0 +1,11 @@
+{
+  "TC006": {
+    "contactUsInfo": {
+      "name": "songlv7550",
+      "email": "songlv7550@co-well.vn",
+      "subject": "Contact Us Subject Test",
+      "message": "Contact Us Message Test",
+      "filePath": "tests/data/testdata/file-upload/TC007-contact-us.txt"
+    }
+  }
+}

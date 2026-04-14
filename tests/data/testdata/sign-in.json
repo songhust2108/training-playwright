@@ -1,0 +1,42 @@
+{
+  "TC002": {
+    "signupInfo": {
+      "name": "songlv7550",
+      "email": "songlv7550@co-well.vn",
+      "password": "songlv7550",
+      "title": "Mr",
+      "birth_date": "15",
+      "birth_month": "08",
+      "birth_year": "1995",
+      "firstname": "Song",
+      "lastname": "Lv",
+      "company": "Co-Well Asia",
+      "address1": "123 Nguyen Trai Street",
+      "address2": "Thanh Xuan District",
+      "country": "India",
+      "zipcode": "100000",
+      "state": "Hanoi",
+      "city": "Hanoi",
+      "mobile_number": "0912345678"
+    },
+    "signInInfo": {
+      "email": "songlv7550@co-well.vn",
+      "password": "songlv7550"
+    },
+    "username": "songlv7550"
+  },
+  "TC003": {
+    "signInInfo": {
+      "email": "songlv7550-fail@co-well.vn",
+      "password": "songlv7550"
+    },
+    "username": "songlv7550"
+  },
+  "TC004": {
+    "signInInfo": {
+      "email": "songlv7550+004@co-well.vn",
+      "password": "songlv7550+004"
+    },
+    "username": "songlv7550+004"
+  }
+}

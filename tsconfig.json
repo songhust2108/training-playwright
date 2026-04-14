@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@pages/*": [
+        "./tests/pages/*"
+      ],
+      "@actions/*": [
+        "./tests/actions/*"
+      ],
+      "@data/*": [
+        "./tests/data/*"
+      ],
+      "@fixtures/*": [
+        "./tests/fixtures/*"
+      ]
+    }
+  }
+}

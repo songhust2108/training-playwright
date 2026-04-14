@@ -1,0 +1,1 @@
+Contact Us success message should be visible after submit
