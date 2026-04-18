@@ -10,7 +10,7 @@ export class HomePage extends CommonPage {
      * @param username Account name shown after the "Logged in as" prefix.
      * @returns Locator targeting the full banner text.
      */
-    async getLoggedInAsField(username: string): Promise<Locator> {
+    getLoggedInAsField(username: string): Locator {
         return this.getTxtLoggedInAs(username);
     }
 
@@ -26,9 +26,6 @@ export class HomePage extends CommonPage {
      * @param username Display name expected in the logged-in banner.
      */
     async verifyLoggedInAsText(username: string): Promise<void> {
-        await expect(
-            await this.getLoggedInAsField(username),
-            `Logged in as ${username} message should be visible`,
-        ).toBeVisible();
+        await expect(this.getLoggedInAsField(username)).toBeVisible();
     }
 }

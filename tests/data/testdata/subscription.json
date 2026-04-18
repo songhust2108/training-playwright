@@ -1,5 +1,8 @@
 {
   "TC010": {
     "subscriptionEmail": "test@gmail.com"
+  },
+  "TC011": {
+    "subscriptionEmail": "test+tc011@gmail.com"
   }
 }

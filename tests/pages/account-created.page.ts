@@ -20,7 +20,7 @@ export class AccountCreatedPage extends CommonPage {
     /**
      * @returns Locator for the bold "ACCOUNT CREATED!" message.
      */
-    async getTxtAccountCreated(): Promise<Locator> {
+    getTxtAccountCreated(): Locator {
         return this.txtAccountCreated;
     }
 

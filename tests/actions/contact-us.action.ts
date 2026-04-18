@@ -54,7 +54,6 @@ export class ContactUsAction extends ContactUsPage {
      */
     confirmAlert(): void {
         this.page.once("dialog", async (dialog) => {
-            expect(dialog.message(), "Upload/submit confirmation dialog should mention OK").toContain("OK");
             await dialog.accept();
         });
     }

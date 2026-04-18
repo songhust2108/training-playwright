@@ -1,4 +1,4 @@
-import test, { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { AccountDeletePage } from '@pages/account-deleted.page';
 
 /**
@@ -12,7 +12,7 @@ export class AccountDeletedAction extends AccountDeletePage {
      */
     async verifyAccountDeletedVisible(): Promise<void> {
         await expect(
-            await this.getTxtAccountDeleted(),
+            this.getTxtAccountDeleted(),
             '"ACCOUNT DELETED!" message should be visible',
         ).toBeVisible();
     }

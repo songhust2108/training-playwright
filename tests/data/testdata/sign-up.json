@@ -30,27 +30,6 @@
     "signupInfo": {
       "name": "linh.le",
       "email": "linh.le@example.com"
-    },
-    "accountInfo": {
-      "title": "Mr.",
-      "password": "admin123@",
-      "dob": {
-        "day": "1",
-        "month": "January",
-        "year": "2000"
-      }
-    },
-    "addressInfo": {
-      "firstName": "Song",
-      "lastName": "Le",
-      "company": "Cowell",
-      "address": "40 To Vinh Dien",
-      "address2": "Khuong Trung",
-      "country": "Canada",
-      "state": "Thanh Xuan",
-      "city": "Ha Noi",
-      "zipcode": "10000",
-      "mobileNumber": "0978289366"
     }
   }
 }

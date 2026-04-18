@@ -20,7 +20,7 @@ export class AccountDeletePage extends CommonPage {
     /**
      * @returns Locator for the bold "ACCOUNT DELETED!" message.
      */
-    async getTxtAccountDeleted(): Promise<Locator> {
+    getTxtAccountDeleted(): Locator {
         return this.txtAccountDeleted;
     }
 

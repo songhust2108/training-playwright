@@ -4,7 +4,9 @@
 import { expect, test } from '@fixtures/base-fixture';
 import signInData from '@data/testdata/sign-in.json';
 import { NAVIGATION } from '@data/constants/navigation.const';
+import { API_URL } from '@data/constants/api-url.const';
 import { SignInInfo } from '@data/types/account.type';
+import { cleanUpAccountCreated } from '@utils/account-cleanup';
 
 test.describe('Sign in', () => {
     test.beforeEach(async ({ home }) => {
@@ -14,11 +16,17 @@ test.describe('Sign in', () => {
         });
     });
 
-    test('TC002: Login User with correct email and password', async ({ home, signIn, accountDeleted, request }) => {
+    test.afterEach(async ({ common, signIn, accountDeleted, signupCtx }, testInfo) => {
+        if (testInfo.status != testInfo.expectedStatus && !signupCtx.wasAccountDeleted() && signupCtx.email) {
+            await cleanUpAccountCreated(common, signIn, accountDeleted, signupCtx.email, signupCtx.password);
+        }
+    });
+
+    test('TC002: Login User with correct email and password', async ({ home, signIn, accountDeleted, request, signupCtx }) => {
         const tc002 = signInData.TC002;
 
         const checkUserExist = await test.step('Check user exist via API', async () => {
-            const responseCheckUserExist = await request.post('https://automationexercise.com/api/verifyLogin', {
+            const responseCheckUserExist = await request.post(API_URL.API_VERIFY_LOGIN, {
                 form: {
                     email: tc002.signInInfo.email,
                     password: tc002.signInInfo.password
@@ -30,7 +38,7 @@ test.describe('Sign in', () => {
 
         if (checkUserExist != '200') {
             const createAccountResponseCode = await test.step('Create account via API', async () => {
-                const response = await request.post('https://automationexercise.com/api/createAccount', {
+                const response = await request.post(API_URL.API_CREATE_ACCOUNT, {
                     form: tc002.signupInfo,
                 });
                 const body = (await response.json()) as { responseCode?: number | string };
@@ -41,6 +49,8 @@ test.describe('Sign in', () => {
                 String(createAccountResponseCode),
                 `createAccount API should return responseCode 201 (got ${String(createAccountResponseCode)})`,
             ).toBe('201');
+            signupCtx.email = tc002.signInInfo.email;
+            signupCtx.password = tc002.signInInfo.password;
         }
 
         await test.step('Open Signup / Login and verify login form', async () => {
@@ -57,6 +67,7 @@ test.describe('Sign in', () => {
         await test.step('Delete account and verify confirmation', async () => {
             await home.navigation.clickMenuItem(NAVIGATION.MENU.DELETE_ACCOUNT);
             await accountDeleted.verifyAccountDeletedVisible();
+            signupCtx.markAccountDeleted();
         });
     });
 

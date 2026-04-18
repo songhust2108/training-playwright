@@ -1,4 +1,4 @@
-import test, { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { AccountCreatedPage } from '@pages/account-created.page';
 
 /**
@@ -12,7 +12,7 @@ export class AccountCreatedAction extends AccountCreatedPage {
      */
     async verifyAccountCreatedVisible(): Promise<void> {
         await expect(
-            await this.getTxtAccountCreated(),
+            this.getTxtAccountCreated(),
             '"ACCOUNT CREATED!" message should be visible',
         ).toBeVisible();
     }

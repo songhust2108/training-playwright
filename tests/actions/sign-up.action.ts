@@ -1,4 +1,4 @@
-import test, { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { SignUpPage } from '@pages/sign-up.page';
 import { AccountInfo, AddressInfo } from '@data/types/account.type';
 

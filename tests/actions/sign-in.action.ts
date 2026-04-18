@@ -1,4 +1,4 @@
-import test, { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { SignInPage } from '@pages/sign-in.page';
 import { SignupInfo, SignInInfo } from '@data/types/account.type';
 
@@ -19,7 +19,7 @@ export class SignInAction extends SignInPage {
     }
 
     /**
-     * Asserts login-area messaging is visible when email already exists (uses login heading locator — align locator if UI differs).
+     * Asserts the "Email Address already exist!" heading is visible before entering registration data.
      * On failure, attaches plain-text context to the test report.
      */
     async verifyEmailAddressAlreadyExistVisible(): Promise<void> {

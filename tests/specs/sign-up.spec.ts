@@ -3,8 +3,9 @@
  */
 import { test } from '@fixtures/base-fixture';
 import { NAVIGATION } from '@data/constants/navigation.const';
-import { SignupInfo, AccountInfo, SignInInfo, AddressInfo } from '@data/types/account.type';
+import { SignupInfo, SignInInfo } from '@data/types/account.type';
 import registerData from '@data/testdata/sign-up.json';
+import { cleanUpAccountCreated } from '@utils/account-cleanup';
 
 test.describe('Sign up', () => {
     test.beforeEach(async ({ common, home }) => {
@@ -18,22 +19,9 @@ test.describe('Sign up', () => {
     test.afterEach(async ({ common, signIn, accountDeleted, signupCtx }, testInfo) => {
         if (testInfo.status != testInfo.expectedStatus && !signupCtx.wasAccountDeleted() && signupCtx.email) {
             console.log(`Cleaning up fail account: ${signupCtx.email}`);
-            const { navigation } = common;
-            await navigation.visit();
-            if (!(await navigation.isMenuItemVisible(NAVIGATION.MENU.DELETE_ACCOUNT))) {
-                await navigation.clickMenuItem(NAVIGATION.MENU.SIGN_UP_LOGIN);
-                await signIn.executeSignIn({
-                    email: signupCtx.email,
-                    password: signupCtx.password
-                });
-            }
-
-            if (await navigation.isMenuItemVisible(NAVIGATION.MENU.DELETE_ACCOUNT)) {
-                await navigation.clickMenuItem(NAVIGATION.MENU.DELETE_ACCOUNT);
-                await accountDeleted.clickContinueBtn();
-            }
+            await cleanUpAccountCreated(common, signIn, accountDeleted, signupCtx.email, signupCtx.password);
         }
-    })
+    });
 
     test('TC001 - Register User', async ({ home, signIn, signUp, accountCreated, accountDeleted, signupCtx }) => {
         const td001 = registerData.TC001;
@@ -84,7 +72,7 @@ test.describe('Sign up', () => {
         });
     });
 
-    test('TC005 - Register User With Exist Email', async ({ home, signIn}) => {
+    test('TC005 - Register User With Exist Email', async ({ home, signIn }) => {
         const td005 = registerData.TC005;
         await test.step('Navigate to the Signup / Login screen.', async () => {
             await home.navigation.clickMenuItem(NAVIGATION.MENU.SIGN_UP_LOGIN);
